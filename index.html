@@ -11,14 +11,24 @@
 </head>
 
 <body>
-		<h1>Feature Flags Demo</h1>
-		<h3>Demo 1</h3>
-		<div id="feature1"></div>
-		<div id="feature2"></div>
-		<div id="feature3"></div>
-		<div id="feature1.2"></div>
-		<div id="feature2.2"></div>
-		<div id="feature3.2"></div>
+
+
+	<p><img src="./images/switches_flags_toggles_mkh_200x667.png" alt="Switches" height="100" width="332"></p>
+	
+	<h1>Feature Flags Demo 1</h1>
+	<h3>(aka feature toggles, feature flippers)</h3>
+	<div id="feature1"></div>
+	<div id="feature2"></div>
+	<div id="feature3"></div>
+	<br>
+	<div id="feature1.2"></div>
+	<div id="feature2.2"></div>
+	<div id="feature3.2"></div>
+	<br>
+	<div id="show_discount_code"></div>
+	<div id="experiment1"></div>
+	<div id="experiment2"></div>
+	<div id="experiment3"></div>
 
 	<script>
 		const featureJson = {"feature1":true, "feature2":false, "feature3":true};
@@ -55,5 +65,51 @@
 		}
 
     </script> 
+
+	<script type="module">
+
+		var jsonFetched;
+		var features;
+
+		import {Features} from './js/features.js';
+
+		//const jsonFilePath = 'https://sourcecell.github.io/feature_flags_demo_1/js/features.json';
+
+		const jsonFilePath = './js/features.json';
+
+		fetch(jsonFilePath)
+		    .then(res => res.json())
+		    .then((out) => {
+
+		        let jsonFetched = out;
+		        console.log('Output: ', out);
+		        features = new Features(jsonFetched); 
+
+				if (features.active("show_discount_code")){
+					document.getElementById("show_discount_code").innerHTML = "Discount code is active (via fetch)";
+				}
+
+		  		if (features.active("experiment1")){
+					document.getElementById("experiment1").innerHTML = "experiment1 is active (via fetch)";
+				}
+
+		  		if (features.active("experiment2")){
+					document.getElementById("experiment2").innerHTML = "experiment2 is active (via fetch)";
+				}
+
+		  		if (features.active("experiment3")){
+					document.getElementById("experiment3").innerHTML = "experiment3 is active (via fetch)";
+				}
+
+		  		if (features.active("experiment4")){
+					document.getElementById("experiment4").innerHTML = "experiment4 is active (via fetch)";
+				}
+
+		}).catch(err => console.error(err));
+
+	</script>
+
+
+    <script type="text/javascript"></script>
 </body>
 </html>
