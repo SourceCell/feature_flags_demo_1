@@ -5,9 +5,7 @@
 <head>
 	<meta charset="utf-8"/>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript" src="features.js"></script>
-	
+	<!--<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>-->
 
 	<title>Feature Flags Demo</title>
 </head>
@@ -23,21 +21,26 @@
 		<div id="feature3.2"></div>
 
 	<script>
-		const featureJson = {"feature1":true, "feature2":true, "feature3":true};
+		const featureJson = {"feature1":true, "feature2":false, "feature3":true};
 
   		if (featureJson["feature1"]){
-			document.getElementById("feature1").innerHTML = "Feature 1 is active (direct json)";
+			document.getElementById("feature1").innerHTML = "Feature 1 is active (via direct json)";
 		}
 
   		if (featureJson["feature2"]){
-			document.getElementById("feature2").innerHTML = "Feature 2 is active (direct json)";
+			document.getElementById("feature2").innerHTML = "Feature 2 is active (via direct json)";
 		}
 
   		if (featureJson["feature3"]){
-			document.getElementById("feature3").innerHTML = "Feature 3 is active (direct json)";
+			document.getElementById("feature3").innerHTML = "Feature 3 is active (via direct json)";
 		}
+	</script>
 
-  		const features = new Features(featureJson); // e.g. server file, databse, etc
+	<script type="module">
+		const featureJson = {"feature1":true, "feature2":true, "feature3":false};
+
+		import {Features} from './features.js';
+  		const features = new Features(featureJson); // as if from server file, database, etc
 
   		if (features.active("feature1")){
 			document.getElementById("feature1.2").innerHTML = "Feature 1 is active (via Features obj)";
