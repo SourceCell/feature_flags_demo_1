@@ -4,7 +4,7 @@
 // usage: deno test  // from parent project's root dir
 
 import {assertEquals} from "https://deno.land/std@0.126.0/testing/asserts.ts";
-import {Features} from '../src/features.js';
+import {Features} from '../js/features.js';
 
 Deno.test("On create, no features", () => {
   const features = new Features();

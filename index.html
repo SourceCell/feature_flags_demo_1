@@ -39,7 +39,7 @@
 	<script type="module">
 		const featureJson = {"feature1":true, "feature2":true, "feature3":false};
 
-		import {Features} from './features.js';
+		import {Features} from './js/features.js';
   		const features = new Features(featureJson); // as if from server file, database, etc
 
   		if (features.active("feature1")){
