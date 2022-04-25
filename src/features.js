@@ -1,6 +1,6 @@
 'use strict';
 
-class Features {
+expert class Features {
   constructor(json) {
     this.jsonObj = json;
   }
