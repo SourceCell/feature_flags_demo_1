@@ -1,6 +1,6 @@
 'use strict';
 
-export class Features {
+class Features {
   constructor(json) {
     this.jsonObj = json;
   }
